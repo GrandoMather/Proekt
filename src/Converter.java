@@ -1,13 +1,13 @@
 public class Converter {
     int convertToKm(int steps) {
-        double Km = steps / 0.75;
-        return steps;
+        int km = steps * 75 / 100000;
+        return km;
     }
 
     int converterStepsTokilocallories(int steps) {
-        int Kn;
-        Kn = steps / 50;
-        int Kk = Kn / 1000;
-        return Kk;
+        int kn;
+        kn = steps * 50;
+        int kk = kn / 1000;
+        return kk;
     }
 }

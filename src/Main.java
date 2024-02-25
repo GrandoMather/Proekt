@@ -2,17 +2,21 @@ import java.util.Scanner;
 class Main {
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
+        StepTracker stepTracker = new StepTracker(scanner);
         while (true) {
-            int i = scanner.nextInt();
-            if (i == 1) {
+            printmenu();
+            int command = scanner.nextInt();
+            if (command == 1) {
                 System.out.println("Выполняется команда 1");
-            } else if ( i == 2) {
+                stepTracker.addNewNumberStepsPerDay();
+            } else if ( command == 2) {
                 System.out.println("Выполняется команда 2");
-            }else if ( i == 3) {
+                stepTracker.changeStepGoal();
+            }else if ( command == 3) {
                 System.out.println("Выполняется команда 3");
-            }else if ( i == 4) {
+                stepTracker.printStatistic();
+            }else if ( command == 4) {
                 System.out.println("Пока!");
-                scanner.close();
                 return;
             }else {
                 System.out.println("Такой команды нет");
@@ -25,5 +29,6 @@ class Main {
         System.out.println("3 - напечатать статистику за определенный месяц.");
         System.out.println("0 - выйти.");
     }
+
 }
 

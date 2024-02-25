@@ -33,19 +33,19 @@ public class StepTracker {
 
     }
 
-    void changeStepGoal(int newGoal) {
-        if (newGoal > 0) {
-            goalbyStepsPerDay = newGoal;
+    void changeStepGoal() {
+        int newGoal = scanner.nextInt();
+        if (newGoal >= 0) {
             System.out.println("Ваша цель сейчас :" + newGoal);
-            return;
+            goalbyStepsPerDay = newGoal;
         } else {
-            System.out.println("Шаги не должны быть равны или меньше нуля.");
-            return;
+            System.out.println("Шаги не должны быть равны нулю или меньше.");
         }
     }
 
     void printStatistic() {
         System.out.println("Введите число месяца");
+        Converter converter = new Converter();
         int monthNumber = scanner.nextInt();
         if (monthNumber <= 0 || monthNumber > 12) {
             System.out.println("Введен не корректный номер месяца.");
@@ -55,18 +55,15 @@ public class StepTracker {
         int sumSteps = month.sumStepsFromMonth();
         System.out.println("Общее количество шагов за месяц:" + sumSteps);
         System.out.println("Количество пройденных шагов по дням:");
-        addNewNumberStepsPerDay();
-        System.out.println("Количество пройденных шагов за месяц: ");
-        addNewNumberStepsPerDay();
+        month.printDaysAndStepsFromMonth();
         int maxSteps = month.maxSteps();
         System.out.println("Максимальное пройденное количество шагов за месяц:" + maxSteps);
-        int  avgSteps = sumSteps / 2;
+        int  avgSteps = sumSteps / 30;
         System.out.println("Среднее пройденное количество шагов за месяц:" + avgSteps);
-        Converter converter = new Converter();
         int distanshion = converter.convertToKm(sumSteps);
         System.out.println("Пройденное количество шагов в киллометрах:"  + distanshion);
-        int kilocallories = converter.converterStepsTokilocallories(sumSteps);
-        System.out.println("Количество сожжённых килокалорий за месяц:" + kilocallories);
+        int kilocalories = converter.converterStepsTokilocallories(sumSteps);
+        System.out.println("Количество сожжённых килокалорий за месяц:" + converter.converterStepsTokilocallories(sumSteps));
         int bestSeries = month.bestSeries(goalbyStepsPerDay);
         System.out.println("Лучшая серия:" + bestSeries);
     }
